@@ -1,0 +1,19 @@
+/*
+REVISED ALGORITHM 
+
+Check to see if a dvd can move with current velocity 
+if it can, 
+  if it is going to ocllide with a wall. change the velocity and do not move it
+  if not, 
+    move it immediatetly 
+
+if not, 
+  collide it with the other dvd by changing its velocity and the other dvd's velocity 
+  (if the other dvd has not been updated it will move in it's new direction assuming no collissions. This is fine)
+
+need to figure out how to handle wall collissions... (update that first probably)
+
+it does not matter if a piece will move. If it has not already, that is where it's being processed. 
+
+they are collidign into one abother because the handleOCollissions is checking the future position not the current.
+*/

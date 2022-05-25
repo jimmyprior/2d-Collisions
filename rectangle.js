@@ -22,6 +22,7 @@ class Rectangle {
             x: xVelocity,
             y: yVelocity
         }
+
     }
 
 
@@ -61,6 +62,28 @@ class Rectangle {
             (this.position.x + this.size.width > size.width || this.position.x < 0) || 
             (this.position.y + this.size.height > size.height || this.position.y < 0)
         )
+    }
+
+
+    checkIntersection(position) {
+        /*
+        position : {
+            x: number x position of click,
+            y: number y position of click
+        }
+
+        check if x and y are inside of this rectangle 
+        */
+
+        if (position.x < this.position.x || position.x > this.position.x + this.width) { 
+            return false;
+        }
+
+        if (position.y < this.position.y || position.y > this.position.y + this.height){
+            return false;
+        }
+        
+        return true;        
     }
 
 
@@ -115,9 +138,11 @@ class Rectangle {
     }
 
 
-    checkCollission(other) {
+    checkCollission(other, position = null) {
         /*
         other : Rectangle
+        position : the position the current objects borders should be calculated for.
+
         check if two rectangles are going to collide returns true if they will. 
         False otherwise. 
     
@@ -125,9 +150,8 @@ class Rectangle {
         */
 
         // If one rectangle is on left side of other
-        let futurePosition = this.getFuturePosition();
 
-        let [left1, top1, right1, bottom1] = this.getBorders(futurePosition); //currents future position 
+        let [left1, top1, right1, bottom1] = this.getBorders(position); //currents future position 
         let [left2, top2, right2, bottom2] = other.getBorders(); //others current position 
 
         // The first rectangle is under the second or vice versa
@@ -175,7 +199,6 @@ class Rectangle {
     
         draws the rectangle to the canvas
         */
-
         ctx.fillStyle = 'green';
         ctx.fillRect(this.position.x, this.position.y, this.size.width, this.size.height);
     }
