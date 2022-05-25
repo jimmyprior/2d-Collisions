@@ -27,14 +27,14 @@ class Collider {
       height : null
     }
 
+    this.rectangles = [];
+
     this.onResize();
 
     //event listeners 
 
     window.addEventListener("resize", this.onResize.bind(this));
     this.canvas.addEventListener("click", this.onClick.bind(this));
-
-    this.rectangles = [];
 
     this.run();
 
@@ -102,6 +102,15 @@ class Collider {
     this.canvas.width = this.size.width
     this.canvas.height = this.size.height
 
+    let rectangles = []
+
+    for (let rectangle of this.rectangles) {
+      if (!rectangle.isOutsideBorders(this.size)) {
+        console.log("oh")
+        rectangles.push(rectangle)
+      }
+    }
+    this.rectangles = rectangles;
   }
 
 

@@ -51,6 +51,19 @@ class Rectangle {
     }
 
 
+    isOutsideBorders(size) {
+        /*
+        returns true if the rectanle is outside of the walls
+        false otherwise. 
+        */
+
+        return (
+            (this.position.x + this.size.width > size.width || this.position.x < 0) || 
+            (this.position.y + this.size.height > size.height || this.position.y < 0)
+        )
+    }
+
+
     handleWallCollide(size) {
         /*
         size : {
